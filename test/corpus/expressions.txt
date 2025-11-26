@@ -581,6 +581,8 @@ a, *c = 1, 2, 3
 a, = 1, 2
 a[b] = c = d
 a, *b.c = d
+m = type(estimator).__module__
+type(estimator).__module__ = "notsklearn"
 
 --------------------------------------------------------------------------------
 
@@ -624,7 +626,26 @@ a, *b.c = d
         (attribute
           (identifier)
           (identifier))))
-    (identifier)))
+    (identifier))
+  (assignment
+    (identifier)
+    (attribute
+      (call
+        (identifier)
+        (argument_list
+          (identifier)))
+      (identifier)))
+  (assignment
+    (attribute
+      (call
+        (identifier)
+        (argument_list
+          (identifier)))
+      (identifier))
+    (string
+      (string_start)
+      (string_content)
+      (string_end))))
 
 ================================================================================
 Assignments with type annotations
@@ -640,7 +661,7 @@ tail_leaves: List[Leaf] = []
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier)))))
     (list)))
@@ -1107,7 +1128,7 @@ y: type[int] = int
         (type
           (generic_type
             (identifier)
-            (type_parameter
+            (type_parameters
               (type
                 (identifier)))))
         (type
@@ -1117,7 +1138,7 @@ y: type[int] = int
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier)))))
     (identifier)))
