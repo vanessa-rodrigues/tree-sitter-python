@@ -464,8 +464,8 @@ module.exports = grammar({
     _type_alias_left_hand_side: $ => seq(
       field('type', choice(
         $.generic_type,
-        $.identifier
-      ))
+        $.identifier,
+      )),
     ),
 
     class_definition: $ => seq(
